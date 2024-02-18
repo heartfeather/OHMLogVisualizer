@@ -23,7 +23,7 @@ def replaceDuplicates(n):
 
 def fileUploaded(f):
   matrix = pd.read_csv(f, header=None).to_numpy()
-  st.session_state.basenames = matrix[0]
+  st.session_state.basenames = matrix[0][1:]
   replaceDuplicates(matrix[1])
   st.session_state.dataframe = pd.DataFrame(data=matrix[2:], columns=matrix[1])
 
@@ -58,7 +58,7 @@ with st.sidebar:
     st.stop()
 
   sensorNames = []
-  for sn, aux in zip(list(st.session_state.dataframe.columns), st.session_state.basenames):
+  for sn, aux in zip(list(st.session_state.dataframe.columns)[1:], st.session_state.basenames):
     sensorNames.append([sn, str(aux)])
 
   df = pd.DataFrame(sensorNames, columns=["Sensors", "Aux"])
