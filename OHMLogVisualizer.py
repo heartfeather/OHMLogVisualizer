@@ -49,6 +49,9 @@ def dataframe_with_selections(df):
 
 initSessionStateVariables()
 
+with st.expander("Usage"):
+  st.write("Upload a OpenHardwareMonitor log file via the side bar and then select sensors to view.")
+
 with st.sidebar:
   uploadedFile = st.file_uploader("Choose a OHM log file (*.csv)", type=['csv'])
   if uploadedFile is not None:
@@ -67,9 +70,6 @@ with st.sidebar:
 sensors = sensors["Sensor"]
 if "Time" in sensors:
   sensors.remove("Time")
-
-with st.expander("Usage"):
-  st.write("Upload a OpenHardwareMonitor log file via the side bar and then select sensors to view.")
 
 if len(sensors) > 0:
   timeStart = st.session_state.dataframe["Time"][0]
