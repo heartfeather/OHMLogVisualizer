@@ -61,10 +61,10 @@ with st.sidebar:
   for sn, aux in zip(list(st.session_state.dataframe.columns)[1:], st.session_state.basenames):
     sensorNames.append([sn, str(aux)])
 
-  df = pd.DataFrame(sensorNames, columns=["Sensors", "Aux"])
+  df = pd.DataFrame(sensorNames, columns=["Sensor", "Label"])
   sensors = dataframe_with_selections(df)
 
-sensors = sensors["Sensors"]
+sensors = sensors["Sensor"]
 if "Time" in sensors:
   sensors.remove("Time")
 
